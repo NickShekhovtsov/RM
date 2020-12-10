@@ -1,0 +1,10 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@ViewData["name"]
+
+<button name="Prev"></button>
+<button type="button" onclick="location.href = '@Url.Action("Prev","Home")'">Prev</button>
+<button type="button" onclick="location.href = '@Url.Action("Play","Home")'">Play</button>
+<button type="button" onclick="location.href = '@Url.Action("Next","Home")'">Next</button>
