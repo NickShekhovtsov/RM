@@ -5,6 +5,7 @@ using System.Threading;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using RM.Models;
+using System.Net.WebSockets;
 
 namespace RM
 {

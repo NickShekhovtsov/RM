@@ -21,7 +21,7 @@ namespace RM.Controllers
 
         public IActionResult Index()
         {
-            
+           
             return View();
         }
 

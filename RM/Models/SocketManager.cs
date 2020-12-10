@@ -116,9 +116,14 @@ namespace RM.Models
                     while (handler.Available > 0);
                     
                     string sr = builder.ToString();
+                    Console.WriteLine(sr);
                     
-                      //  js = JsonSerializer.Deserialize<SongInfo>(sr);   проблема где то тут аффаааааааааааааааааааааааааааааааааааааааааааа
+                     js = JsonSerializer.Deserialize<SongInfo>(sr);
+
+                    Case.name = js.name;
+                    Case.duration = js.duration;
                     
+
                 }
             }
 

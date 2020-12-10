@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 namespace RM.Models
 {
     public static class Case
-    {   
-        public static string name { get; set; }
+    {
+        public static string name { get; set; } = "name";
         public static bool flag { get; set; } = false;
         public static string button { get; set; }
 
