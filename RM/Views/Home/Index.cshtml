@@ -7,6 +7,46 @@
 
 
 
-<button type="button" onclick="location.href = '@Url.Action("Prev","Home")'">Prev</button>
-<button type="button" onclick="location.href = '@Url.Action("Play","Home")'">Play</button>
-<button type="button" onclick="location.href = '@Url.Action("Next","Home")'">Next</button>
+@*<button type="button" onclick="location.href = '@Url.Action("Prev","Home")'">Prev</button>
+    <button type="button" onclick="location.href = '@Url.Action("Play","Home")'">Play</button>
+    <button type="button" onclick="location.href = '@Url.Action("Next","Home")'">Next</button>*@
+
+
+
+<script src="~/js/signalr/dist/browser/signalr.min.js"></script>
+<script>
+    const hubConnection = new signalR.HubConnectionBuilder()
+        .withUrl("/player")
+        .withAutomaticReconnect()
+        .build();
+    let connectinoId = ""
+
+    
+    
+    function onpllay() {
+        hubConnection.invoke('play')
+    }
+
+    function onnext() {
+        hubConnection.invoke('next')
+    }
+
+    function onprev() {
+        hubConnection.invoke('prev')
+    }
+    //hubConnection.on("SendNa", function (name) {
+    //    let elem = document.createElement("p");
+    //    elem.appendChild(document.createTextNode(name));
+
+    //    document.getElementById("sendna").appendChild(elem);
+    //})
+
+    hubConnection.start().then(() => {
+        console.log("serverR connected")
+    });
+</script>
+
+
+<button type="button" id="Button" onclick="onprev()">Prev</button>
+<button type="button" id="Buttonpl" onclick="hubConnection.invoke('play')">Play</button>
+<button type="button" id="Button" onclick="onnext()">Next</button>

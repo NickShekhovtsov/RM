@@ -80,6 +80,7 @@ namespace RM.Models
                     if (Case.button == "previous")
                         data = Encoding.Unicode.GetBytes("prev");
                     Case.flag = false;
+                    Case.button = "";
                     try
                     {
                         handler.Send(data);

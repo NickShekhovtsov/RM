@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
 using RM.Models;
 
@@ -21,7 +22,7 @@ namespace RM.Controllers
 
         public IActionResult Index()
         {
-           
+
             return View();
         }
 
@@ -57,4 +58,8 @@ namespace RM.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
+
+   
+
+
 }
