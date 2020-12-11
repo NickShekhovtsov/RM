@@ -10,21 +10,21 @@ namespace RM.Models
     {
         public  void play()
         {
-            
+            SendName();
                 Case.button = "play";
                 Case.flag = true;
          
         }
         public void next()
         {
-           
+            SendName();
             Case.button = "next";
             Case.flag = true;
 
         }
         public void prev()
         {
-            
+            SendName();
             Case.button = "previous";
             Case.flag = true;
 
