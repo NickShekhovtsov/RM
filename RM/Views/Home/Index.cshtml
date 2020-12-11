@@ -37,16 +37,38 @@
     //hubConnection.on("SendNa", function (name) {
     //    let elem = document.createElement("p");
     //    elem.appendChild(document.createTextNode(name));
-
     //    document.getElementById("sendna").appendChild(elem);
     //})
+    
 
-    hubConnection.start().then(() => {
-        console.log("serverR connected")
+    hubConnection.on("SendNa", function (data) {
+
+        document.getElementById("trackname").textContent=data
+
+        //let elem = document.createElement("p");
+        //elem.appendChild(document.createTextNode(data));
+        //let firstElem = document.getElementById("chatroom").firstChild;
+        //document.getElementById("chatroom").insertBefore(elem, firstElem);
+
     });
+
+    //document.getElementById("Button").addEventListener("click", function (e) {
+    //    hubConnection.invoke("SendNa");
+    //});
+        hubConnection.start().then(() => {
+            console.log("serverR connected")
+
+
+
+
+
+        });
+
+
+    
 </script>
 
-
+<p id="trackname"></p>
 <button type="button" id="Button" onclick="onprev()">Prev</button>
-<button type="button" id="Buttonpl" onclick="hubConnection.invoke('play')">Play</button>
+<button type="button" id="Button" onclick="onpllay()">Play</button>
 <button type="button" id="Button" onclick="onnext()">Next</button>

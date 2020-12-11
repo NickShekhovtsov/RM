@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.SignalR;
 
 namespace RM.Models
 {   public enum flagTypeServer
@@ -20,9 +21,12 @@ namespace RM.Models
         private Socket serverSocket;
         private Socket clientSocket;
         private flagTypeServer fl;
-
+       
+       
         public SocketManager(string ip, int port, flagTypeServer _fl)
         {
+           
+           
             IPEndPoint ipPoint = new IPEndPoint(IPAddress.Parse(ip), port);
             fl = _fl;
             // создаем сокет
@@ -97,7 +101,7 @@ namespace RM.Models
         {
             await Task.Run(() => AcceptInfo(handler));
         }
-        public void AcceptInfo(Socket handler)
+        public  void AcceptInfo(Socket handler)
         {
             SongInfo js;
             while (true)
@@ -123,7 +127,7 @@ namespace RM.Models
 
                     Case.name = js.name;
                     Case.duration = js.duration;
-                    
+                   
 
                 }
             }

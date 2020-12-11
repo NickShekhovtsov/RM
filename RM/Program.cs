@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using RM.Models;
 using System.Net.WebSockets;
+using Microsoft.AspNetCore.SignalR;
 
 namespace RM
 {
@@ -13,6 +14,8 @@ namespace RM
     {
         public static void Main(string[] args)
         {
+            // Start the thread.
+           
             SocketManager smse = new SocketManager("127.0.0.1",8000,flagTypeServer.Send);
 
             // Create the thread object, passing in the
@@ -34,7 +37,8 @@ namespace RM
 
 
             // Start the thread.
-            CreateHostBuilder(args).Build().Run();
+           CreateHostBuilder(args).Build().Run();
+            
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
