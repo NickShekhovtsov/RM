@@ -1,0 +1,191 @@
+﻿@{
+    ViewData["Title"] = "RemotePlayer";
+}
+
+
+
+
+
+
+<!--@*<button type="button" onclick="location.href = '@Url.Action("Prev","Home")'">Prev</button>
+  <button type="button" onclick="location.href = '@Url.Action("Play","Home")'">Play</button>
+  <button type="button" onclick="location.href = '@Url.Action("Next","Home")'">Next</button>*@-->
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="~/css/design.css" />
+    <link rel="shortcut icon" href="~/img/favicon.ico" type="image/x-icon">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Remote Player</title>
+</head>
+
+<script>
+    // http://www.websocket.org/echo.html
+
+    var
+        wsUri = "ws://127.0.0.1:8000",
+        websocket = new WebSocket(wsUri);
+    websocket.onmessage = getMessage;
+
+
+    websocket.onopen = function (e) {
+        console.log("connected")
+    };
+
+    websocket.onclose = function (e) {
+
+    };
+
+    websocket.onerror = function (e) {
+        writeToScreen("<span class=error>ERROR:</span> " + e.data);
+    };
+
+
+    function volume() {
+        var obj = {
+            command: "volume",
+            value: document.getElementById('myrange').value
+        }
+        rawData = new Blob([JSON.stringify(obj)])
+        websocket.send(rawData)
+    }
+
+
+    function getMessage(event) {
+
+        const data = JSON.parse(event.data)
+        console.log(data)
+
+        if (data.hasOwnProperty("value")) {
+            console.log("volume setup")
+            document.getElementById('myRange').value = data.value
+        }
+
+        if (data.hasOwnProperty("name")) {
+            console.log("name setup")
+            document.getElementById('track').textContent = data.name
+        }
+        if (data.hasOwnProperty("flag")) {
+            if (data.flag == true) {
+                if (data.hasOwnProperty("songs")) {
+                    console.log("songs setup")
+                    Add(data.songs);
+                }
+            }
+        }
+
+
+    }
+    function volume() {
+        var obj = {
+            command: "volume",
+            value: document.getElementById('myRange').value
+        }
+        rawData = new Blob([JSON.stringify(obj)])
+        websocket.send(rawData)
+    }
+
+    function onpllay() {
+        var obj = {
+            command: "play",
+            value: document.getElementById('myRange').value
+        }
+        rawData = new Blob([JSON.stringify(obj)])
+        websocket.send(rawData)
+    }
+
+    function onnext() {
+        var obj = {
+            command: "next",
+            value: document.getElementById('myRange').value
+        }
+        rawData = new Blob([JSON.stringify(obj)])
+        websocket.send(rawData)
+
+    }
+
+
+    function onprev() {
+        var obj = {
+            command: "prev",
+            value: document.getElementById('myRange').value
+        }
+        rawData = new Blob([JSON.stringify(obj)])
+        websocket.send(rawData)
+    }
+
+    function onGamerButton() {
+        var obj = {
+            command: "volume",
+            value: "10"
+        }
+        document.getElementById('myRange').value = obj.value
+        rawData = new Blob([JSON.stringify(obj)])
+        websocket.send(rawData)
+    }
+    function Add(text) {
+        var k = 0;
+        var parent = document.getElementsByTagName("ol")[0];
+        parent.innerHTML = '';
+        for (var i = 0; i < text.length; i++) {
+            var li = document.createElement("li");
+            li.value = k;
+            var Track = document.createTextNode(text[i]);
+            parent.appendChild(li);
+            li.appendChild(Track);
+            k = k + 1;
+        }
+    }
+    function Rem(nomer) {
+        var index = nomer.toString();
+        var obj = {
+            command: "index",
+            value: document.getElementById('myRange').value,
+            currentSongIndex: index
+        }
+        rawData = new Blob([JSON.stringify(obj)])
+        websocket.send(rawData)
+    }
+    function Remout() {
+        let target = event.target;
+        var tg = target;
+        Rem(tg.value);
+    }
+
+
+
+</script>
+
+
+
+
+
+<div id="top">
+</div>
+
+<div id="track"></div>
+<div id="slidecontainer">
+    <input type="range" min="0" max="100" value="50" class="slider" id="myRange" onchange="volume()">
+</div>
+<div id="tyk">
+    <button class="Button1" onclick="onprev()">
+        <img class="img2" src="~/img/назад.png">
+    </button>
+    <button class="Button2" onclick="onpllay()">
+        <img id="img3" src="~/img/Старт.png" onclick="change()">
+    </button>
+    <button class="Button3" onclick="onnext()">
+        <img class="img4" src="~/img/вперед.png">
+    </button>
+</div>
+<div id="ListBox">
+    <ol id="List" onclick="Remout()">
+    </ol>
+</div>
+<div id="GamerButton">
+    <button class="Button4" onclick="onGamerButton()">
+        <img class="img1" src="~/img/GamerButton.png">
+    </button>
+</div>
+<div id="doun">
+</div>
+</html>

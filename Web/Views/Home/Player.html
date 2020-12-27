@@ -1,0 +1,146 @@
+﻿
+
+
+
+
+
+
+
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="css/design.css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>remout musik</title>
+</head>
+
+<script>
+    // http://www.websocket.org/echo.html
+
+    var
+        wsUri = "ws://"+location.host + ":8000",
+        websocket = new WebSocket(wsUri);
+    websocket.onmessage = getMessage;
+
+
+    websocket.onopen = function (e) {
+        console.log("connected")
+    };
+
+    websocket.onclose = function (e) {
+       
+    };
+
+    websocket.onerror = function (e) {
+        writeToScreen("<span class=error>ERROR:</span> " + e.data);
+    };
+
+
+    function volume() {
+        var obj = {
+            command: "volume",
+            value: document.getElementById('myrange').value
+        }
+        rawData = new Blob([JSON.stringify(obj)])
+        websocket.send(rawData)
+    }
+
+
+    function getMessage(event) {
+
+        const data = JSON.parse(event.data)
+        console.log(data)
+
+        if (data.hasOwnProperty("value")) {
+            console.log("volume setup")
+            document.getElementById('myRange').value = data.value
+        }
+
+        if (data.hasOwnProperty("name")) {
+            console.log("name setup")
+            document.getElementById('track').textContent = data.name
+        }
+
+
+    }
+    function volume() {
+        var obj = {
+            command: "volume",
+            value: document.getElementById('myRange').value
+        }
+        rawData = new Blob([JSON.stringify(obj)])
+        websocket.send(rawData)
+    }
+
+    function onpllay() {
+        var obj = {
+            command: "play",
+            value: document.getElementById('myRange').value
+        }
+        rawData = new Blob([JSON.stringify(obj)])
+        websocket.send(rawData)
+    }
+
+    function onnext() {
+        var obj = {
+            command: "next",
+            value: document.getElementById('myRange').value
+        }
+        rawData = new Blob([JSON.stringify(obj)])
+        websocket.send(rawData)
+
+    }
+
+
+    function onprev() {
+        var obj = {
+            command: "prev",
+            value: document.getElementById('myRange').value
+        }
+        rawData = new Blob([JSON.stringify(obj)])
+        websocket.send(rawData)
+    }
+
+    function onGamerButton() {
+        var obj = {
+            command: "volume",
+            value: "10"
+        }
+        document.getElementById('myRange').value = obj.value
+        rawData = new Blob([JSON.stringify(obj)])
+        websocket.send(rawData)
+    }
+
+
+    
+</script>
+
+
+
+
+
+<div id="top">
+</div>
+
+<div id="track"></div>
+<div id="slidecontainer">
+    <input type="range" min="0" max="100" value="50" class="slider" id="myRange" onchange="volume()">
+</div>
+<div id="tyk">
+    <button class="Button1" onclick="onprev()">
+        <img class="img2" src="img/назад.png">
+    </button>
+    <button class="Button2" onclick="onpllay()">
+        <img id="img3" src="img/Старт.png" onclick="change()">
+    </button>
+    <button class="Button3" onclick="onnext()">
+        <img class="img4" src="img/вперед.png">
+    </button>
+</div>
+<div id="GamerButton">
+    <button class="Button4" onclick="onGamerButton()">
+        <img class="img1" src="img/GamerButton.png">
+    </button>
+</div>
+<div id="doun">
+</div>
+</html>

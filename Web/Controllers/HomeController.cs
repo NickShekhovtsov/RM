@@ -5,9 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using RM.Models;
+using Web.Models;
 
-namespace RM.Controllers
+namespace Web.Controllers
 {
     public class HomeController : Controller
     {
@@ -15,35 +15,12 @@ namespace RM.Controllers
 
         public HomeController(ILogger<HomeController> logger)
         {
-            Console.WriteLine("Controller created");
             _logger = logger;
         }
 
         public IActionResult Index()
         {
-           
-            return View();
-        }
-
-        public IActionResult Play()
-        {
-            Case.flag = true;
-            Case.button = "play";
-            return View("Index");
-        }
-
-        public IActionResult Next()
-        {
-            Case.flag = true;
-            Case.button = "next";
-            return View("Index");
-        }
-
-        public IActionResult Prev()
-        {
-            Case.flag = true;
-            Case.button = "previous";
-            return View("Index");
+            return View("Player");
         }
 
         public IActionResult Privacy()

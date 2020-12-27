@@ -1,0 +1,147 @@
+﻿
+<!doctype html>
+<style>
+    textarea {
+        vertical-align: bottom;
+    }
+
+    #output {
+        overflow: auto;
+    }
+
+        #output > p {
+            overflow-wrap: break-word;
+        }
+
+        #output span {
+            color: blue;
+        }
+
+            #output span.error {
+                color: red;
+            }
+</style>
+<h2>WebSocket Test</h2>
+<textarea cols=60 rows=6></textarea>
+<button>send</button>
+<button onclick="play()">play</button>
+<button onclick="next()">next</button>
+<input type="range" min="0" max="100" step="1" value="50" id="myrange" onchange="volume()">
+
+<div id=output></div>
+<script>
+    // http://www.websocket.org/echo.html
+
+    var button = document.querySelector("button"),
+        output = document.querySelector("#output"),
+        textarea = document.querySelector("textarea"),
+        // wsUri = "ws://echo.websocket.org/",
+        wsUri = "ws://127.0.0.1:8000",
+        websocket = new WebSocket(wsUri);
+
+    button.addEventListener("click", onClickButton);
+    websocket.onmessage = getMessage;
+
+
+    websocket.onopen = function (e) {
+        writeToScreen("CONNECTED");
+        //doSend("WebSocket rocks");
+    };
+
+    websocket.onclose = function (e) {
+        writeToScreen("DISCONNECTED");
+    };
+
+    //websocket.onmessage = function (e) {
+    //   writeToScreen("<span>RESPONSE: " + e.data + "</span>");
+    //};
+
+    websocket.onerror = function (e) {
+        writeToScreen("<span class=error>ERROR:</span> " + e.data);
+    };
+
+    function doSend(message) {
+        writeToScreen("SENT: " + message);
+        websocket.send(message);
+    }
+
+    function volume() {
+        var obj = {
+            command: "volume",
+            value: document.getElementById('myrange').value
+        }
+        rawData = new Blob([JSON.stringify(obj)])
+        websocket.send(rawData)
+    }
+    
+
+    function getMessage(event) {
+
+        const data = JSON.parse(event.data)
+            console.log(data)
+            
+            if (data.hasOwnProperty("value")) {
+                console.log("volume setup")
+                document.getElementById('myrange').value = data.value
+            }
+            
+        
+    }
+
+
+
+
+
+//    function volume() {
+//        var obj = {
+//            command: "volume",
+//            value: document.getElementById('myrange').value
+//    rawData = new Blob([JSON.strngify(obj)])
+//websocket.send(rawData)
+    //        }
+    function play() {
+        var obj = {
+            command:"play",
+            value: document.getElementById('myrange').value
+        }
+        rawData = new Blob([JSON.stringify(obj)])
+        websocket.send(rawData)
+    }
+
+    function next() {
+        var obj = {
+            command: "next",
+            value: document.getElementById('myrange').value
+        }
+        rawData = new Blob([JSON.stringify(obj)])
+        websocket.send(rawData)
+    }
+
+        function writeToScreen(message) {
+            output.insertAdjacentHTML("afterbegin", "<p>" + message + "</p>");
+
+        }
+
+        function onClickButton() {
+            var text = textarea.value;
+
+            text && doSend(text);
+            textarea.value = "";
+            textarea.focus();
+        }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
