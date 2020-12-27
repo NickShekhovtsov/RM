@@ -1,0 +1,182 @@
+body {
+     background: #FFFFFF;
+     color: #000;
+     font-family: Arial, sans-serif;
+     font-size: 14px;
+}
+ #top{
+     background:#BFCDDB;
+     height: 7%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 900px;
+    margin-top:0;
+}
+#track{
+  text-align: center
+  position: relative;
+  margin-left: auto;
+    margin-right: auto;
+    height: 15%;
+    width: 900px;
+   font-family: 'Times New Roman', Times, serif; 
+    font-size: 250%;
+    background: #BFCDDB;
+    color: #FFF;
+}
+#slidecontainer{
+background: #BFCDDB;
+width: 900px;
+height: 10%;
+margin-left: auto;
+    margin-right: auto;
+}
+.slider {
+    -webkit-appearance: none;
+    width: 60%;
+    height: 15px;
+    border-radius: 5px;  
+    background: #FFFFFF;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    
+    margin-left: 20%;
+    margin-right: auto;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%; 
+    background: #4CAF50;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #4CAF50;
+    cursor: pointer;
+}
+#tyk{
+position: relative;
+  margin-left: auto;
+    margin-right: auto;
+    width: 900px;
+   font-family: 'Times New Roman', Times, serif; 
+    font-size: 100px;
+    background: #BFCDDB;
+    height: 160px;
+    color: #FFF;
+}
+
+  button.Button1{
+  position: relative;
+  display: inline-block;
+  font-size: 100%;
+  font-weight: 700;
+  color: #FFF;
+  text-shadow: #053852;
+  text-decoration: none;
+  user-select: none;
+  outline: none;
+  border-radius: 7px;
+  background: #BFCDDB;
+  margin-left: 240px;
+  height: 100px;
+  width: 130px;
+ padding:0px;
+}
+
+button.Button2{
+   position: relative;
+  display: inline-block;
+  font-size: 1%;
+  font-weight:0;
+  color: #FFF;
+  text-shadow: #053852;
+  text-decoration: none;
+  user-select: none;
+  outline: none;
+  border-radius: 7px;
+  background: #BFCDDB;
+  height: 100px;
+  width: 130px;
+   padding:0px;
+}
+button.Button2:active{ 
+  position: relative;
+  display: inline-block;
+  font-size: 1%;
+  font-weight:0;
+  color: #FFF;
+  text-shadow: #053852;
+  text-decoration: none;
+  user-select: none;
+  outline: none;
+  border-radius: 7px;
+  background: #BFCDDB;
+  height: 100px;
+  width: 130px;
+   padding:0px;
+  background-image: (GamerButton.png);
+  
+}
+button.Button3{
+  position: relative;
+  display: inline-block;
+  font-size: 100%;
+  font-weight:0;
+  color: #FFF;
+  text-shadow: #053852;
+  text-decoration: none;
+  user-select: none;
+  outline: none;
+  border-radius: 7px;
+  background: #BFCDDB;
+  height: 100px;
+  width: 130px;
+  padding:0px;
+}
+button.Button4{
+  position: relative;
+  display: inline-block;
+  font-size: 100%;
+  font-weight: 700;
+  color: #FFF;
+  text-shadow: #053852;
+  text-decoration: none;
+  user-select: none;
+  padding:0px;
+  outline: none;
+  border-radius: 7px;
+  background: #BFCDDB;
+  height: 250px;
+  width: 250px;
+  background-image: (GamerButton.png);
+  margin-left: 330px;
+}
+#GamerButton{
+  position: relative;
+  margin-left: auto;
+    margin-right: auto;
+    width: 900px;
+   font-family: 'Times New Roman', Times, serif; 
+    font-size: 250%;
+    background: #BFCDDB;
+    height: 300px;
+    color: #FFF;
+}
+
+ #doun{
+     background: #BFCDDB;
+     height: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 900px;
+ }
